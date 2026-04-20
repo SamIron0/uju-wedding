@@ -7,6 +7,7 @@ import { FilmStripCarousel } from "../components/FilmStripCarousel";
 import { WeddingColours } from "../components/WeddingColours";
 
 type AttendingStatus = "yes" | "no" | null;
+type GuestCategory = "abanas-family" | "obis-family" | "csu" | "general" | "";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -74,6 +75,7 @@ export default function Home() {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [category, setCategory] = useState<GuestCategory>("");
   const [attending, setAttending] = useState<AttendingStatus>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
@@ -119,8 +121,14 @@ export default function Home() {
     setError(null);
     setSuccess(null);
 
-    if (!fullName.trim() || !phone.trim() || !email.trim() || !attending) {
-      setError("Please fill in all fields and select if you will attend.");
+    if (
+      !fullName.trim() ||
+      !phone.trim() ||
+      !email.trim() ||
+      !category ||
+      !attending
+    ) {
+      setError("Please fill in all fields, choose a category, and select if you will attend.");
       return;
     }
 
@@ -128,7 +136,7 @@ export default function Home() {
       setError("Please enter a valid email address.");
       return;
     }
-    
+
     setIsSubmitting(true);
     try {
       const res = await fetch("/api/rsvp", {
@@ -138,6 +146,7 @@ export default function Home() {
           fullName: fullName.trim(),
           phone: phone.trim(),
           email: email.trim(),
+          category,
           attending: attending === "yes",
         }),
       });
@@ -155,6 +164,7 @@ export default function Home() {
       setFullName("");
       setPhone("");
       setEmail("");
+      setCategory("");
       setAttending(null);
     } catch (err) {
       setError(
@@ -165,7 +175,7 @@ export default function Home() {
     } finally {
       setIsSubmitting(false);
     }
-  }, [attending, email, fullName, phone]);
+  }, [attending, category, email, fullName, phone]);
 
   const handleCopyAccount = useCallback(async () => {
     try {
@@ -201,23 +211,23 @@ export default function Home() {
 
         <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center text-white">
           <p className="font-script text-4xl leading-tight sm:text-5xl md:text-6xl">
-            Olamide <span className="font-serif-display text-3xl align-middle">&amp;</span> Agbor
+            Chinedu <span className="font-serif-display text-3xl align-middle">&amp;</span> Uju
           </p>
           <p className="mt-4 font-serif-display text-lg italic tracking-wide sm:text-xl">
             invite you to celebrate their union
           </p>
           <p className="mt-6 text-xs tracking-[0.35em] sm:text-sm">
-            #THEOASTORY&apos;26
+            #THECUSTORY&apos;26
           </p>
 
           <div className="mt-8 inline-flex items-center gap-3 rounded-full bg-white/10 px-6 py-2 text-lg uppercase tracking-[0.2em] backdrop-blur">
             <span>Saturday</span>
             <span className="h-px w-6 bg-white/40" />
-            <span>May 30, 2026</span>
+            <span>May 16, 2026</span>
           </div>
 
           <p className="mt-6 text-sm text-white/80 sm:text-base">
-            God&apos;s Grace Event Center &middot; GOFAMINT, Ikorodu &mdash; Lagos State, Nigeria
+            St. Leo&apos;s Catholic Church Ikeja &middot; Lagos Country Club GRA Ikeja
           </p>
 
           <button
@@ -275,7 +285,7 @@ export default function Home() {
               Join us in Ikorodu, Lagos State, on{" "}
               <span className="font-medium text-wine">Saturday, May 30, 2026</span> as we tell{" "}
               <span className="font-script text-wine text-xl align-middle">
-                #TheOAStory&apos;26
+                #TheCUStory&apos;26
               </span>
               .
             </p>
@@ -345,7 +355,7 @@ export default function Home() {
               <div className="relative aspect-square w-full overflow-hidden px-5 lg:px-0">
                 <Image
                   src="/images/couple-12.jpg"
-                  alt="Olamide and Agbor — just us"
+                  alt="Uju and Chinedu — just us"
                   fill
                   sizes="(max-width: 1023px) 80vw, 320px"
                   className="object-cover"
@@ -391,8 +401,8 @@ export default function Home() {
             >
               <div className="relative aspect-square w-full overflow-hidden px-5 lg:px-0">
                 <Image
-                  src="/images/couple-2.jpg"
-                  alt="Olamide and Agbor — our story begins"
+                  src="/images/couple-1.jpg"
+                  alt="Uju and Chinedu — our story begins"
                   fill
                   sizes="(max-width: 1023px) 72vw, 288px"
                   className="object-cover"
@@ -407,36 +417,27 @@ export default function Home() {
 
         <FilmStripCarousel
           images={[
-            { src: "/images/couple-3.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-4.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-5.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-6.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-7.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-8.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-9.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-10.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-11.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-12.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-13.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-14.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-15.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-16.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-17.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-18.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-19.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-20.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-21.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-22.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-23.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-24.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-25.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-26.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-27.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-28.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-29.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-30.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-31.jpg", alt: "Olamide and Agbor" },
-            { src: "/images/couple-32.jpg", alt: "Olamide and Agbor" },
+            { src: "/images/couple-3.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-4.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-5.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-6.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-7.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-8.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-9.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-10.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-11.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-12.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-13.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-14.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-15.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-16.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-17.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-18.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-19.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-20.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-21.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-22.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-23.jpg", alt: "Uju and Chinedu" },
           ]}
         />
       </section>
@@ -456,41 +457,28 @@ export default function Home() {
               The Day
             </p>
             <h2 className="mt-2 font-serif-display text-3xl text-foreground md:text-4xl">
-              Saturday, May 30, 2026
+              Saturday, May 16, 2026
             </h2>
           </div>
           <p className="max-w-xs text-xs text-neutral-500 italic md:text-right">
-            One story told in three chapters — a unified celebration of tradition, faith, and joy.
+            One story told in two chapters — a unified celebration of faith, and joy.
           </p>
         </div>
 
         <div className="relative">
           <div className="pointer-events-none absolute left-1/2 top-8 hidden h-[260px] -translate-x-1/2 border-l border-dashed border-royal/40 md:block lg:hidden" />
           <div className="hidden h-0.5 w-full bg-gradient-to-r from-wine/10 via-royal/40 to-wine/10 lg:block" />
-          <div className="mt-10 grid gap-12 md:grid-cols-3 md:gap-8">
+          <div className="mt-10 grid gap-12 md:grid-cols-2 md:gap-8">
             <article className="relative space-y-3 border border-neutral-200/80 bg-white/70 p-6 shadow-[0_18px_40px_rgba(0,0,0,0.03)] backdrop-blur-sm">
-              <p className="font-serif-display text-2xl text-wine">8:00 AM</p>
+              <p className="font-serif-display text-2xl text-wine">10:00 AM</p>
               <h3 className="font-serif-display text-lg tracking-wide text-foreground">
-                Traditional Ceremony
+                Wedding Mass
               </h3>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-royal">
-                God&apos;s Grace Event Center
+                St. Leo&apos;s Catholic Church God
               </p>
               <p className="text-xs text-neutral-600">
-                23 Ayodele Ayeni Street, Ikorodu, Lagos State
-              </p>
-            </article>
-
-            <article className="relative space-y-3 border border-neutral-200/80 bg-white/70 p-6 shadow-[0_18px_40px_rgba(0,0,0,0.03)] backdrop-blur-sm">
-              <p className="font-serif-display text-2xl text-wine">11:00 AM</p>
-              <h3 className="font-serif-display text-lg tracking-wide text-foreground">
-                Church Ceremony
-              </h3>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-royal">
-                The Gospel Faith Mission International (GOFAMINT)
-              </p>
-              <p className="text-xs text-neutral-600">
-                327 Ogunkoya Street, Ikorodu, Lagos State
+                7 Amore Street, Allen, Ikeja, Lagos State
               </p>
             </article>
 
@@ -500,19 +488,19 @@ export default function Home() {
                 Wedding Reception
               </h3>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-royal">
-                God&apos;s Grace Event Center
+                Lagos Country Club GRA
               </p>
               <p className="text-xs text-neutral-600">
-                23 Ayodele Ayeni Street, Ikorodu, Lagos State
+                G.R.A, 2, Jeol Ogunnaike Street, Off Mobolaji Bank Anthony Way, Lagos State
               </p>
               <p className="mt-2 text-[11px] text-neutral-500">
-                Follows immediately after the church ceremony.
+                Follows immediately after the mass ceremony.
               </p>
             </article>
           </div>
 
           <p className="mt-8 text-xs text-neutral-600 md:hidden">
-            All events will be held in Ikorodu, Lagos State, Nigeria.
+            All events will be held in Ikeja, Lagos State, Nigeria.
           </p>
         </div>
       </section>
@@ -536,13 +524,11 @@ export default function Home() {
         <div className="space-y-6">
           <div className="overflow-hidden rounded-2xl border border-wine/60 bg-white shadow-[0_24px_60px_rgba(0,0,0,0.08)]">
             <div className="aspect-[4/3] w-full">
-              <iframe
-                title="Wedding Venues in Ikorodu"
-                src="https://www.google.com/maps/d/embed?mid=1hJvqrM251uYJDVz5TZUcdwvJxFb9IGo"
+
+              <iframe title="Wedding Venues in Ikorodu"
                 className="h-full w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+                src="https://www.google.com/maps/d/u/0/embed?mid=11mni5qODnzvOKNz6lO7p1oApGd6LTks&ehbc=2E312F">
+              </iframe>
             </div>
           </div>
 
@@ -565,11 +551,11 @@ export default function Home() {
                 RSVP
               </p>
               <p className="mt-4 font-script text-4xl leading-tight sm:text-5xl">
-                Olamide &amp; Agbor
+                Uju &amp; Chinedu
               </p>
               <p className="mt-6 max-w-xs text-sm text-white/80">
                 Your presence means the world to us. Kindly RSVP on or before{" "}
-                <span className="font-semibold">Sunday, May 24, 2026</span>.
+                <span className="font-semibold">Sunday, May 10, 2026</span>.
               </p>
               <p className="mt-4 max-w-xs text-xs text-white/80">
                 Please note: this is a strictly by-invitation event. Submit this request to receive
@@ -577,7 +563,7 @@ export default function Home() {
               </p>
             </div>
             <p className="mt-10 text-[11px] uppercase tracking-[0.25em] text-white/60">
-              #THEOASTORY&apos;26
+              #TheCUStory&apos;26
             </p>
           </div>
 
@@ -592,7 +578,7 @@ export default function Home() {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   className="w-full rounded-md border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm outline-none ring-0 transition focus:border-wine focus:bg-white focus:ring-2 focus:ring-wine/20"
-                  placeholder="e.g. Agbor Ojen Jr."
+                  placeholder="e.g. John Doe"
                 />
               </div>
 
@@ -620,6 +606,23 @@ export default function Home() {
                   className="w-full rounded-md border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm outline-none ring-0 transition focus:border-wine focus:bg-white focus:ring-2 focus:ring-wine/20"
                   placeholder="yourname@example.com"
                 />
+              </div>
+
+              <div className="space-y-1.5 md:col-span-2">
+                <label className="text-xs font-medium tracking-wide text-neutral-600">
+                  Category
+                </label>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value as GuestCategory)}
+                  className="w-full rounded-md border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm outline-none ring-0 transition focus:border-wine focus:bg-white focus:ring-2 focus:ring-wine/20"
+                >
+                  <option value="">Select your category</option>
+                  <option value="abanas-family">Abana&apos;s Family</option>
+                  <option value="obis-family">Obi&apos;s Family</option>
+                  <option value="csu">CSU</option>
+                  <option value="general">General</option>
+                </select>
               </div>
             </div>
 
@@ -692,16 +695,14 @@ export default function Home() {
           Gifts & Support
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm text-neutral-700 md:text-base">
-          No boxed gifts, please —{" "}
-          <span className="font-bold italic">we nor get where to keep dem </span>🤭
-          . If you&apos;d like to support us, a monetary gift can be sent here:
+          If you&apos;d like to support us, a monetary gift can be sent here:
         </p>
 
         <div className="mx-auto mt-8 max-w-md rounded-2xl border border-wine bg-white px-6 py-5 text-left shadow-[0_18px_40px_rgba(0,0,0,0.05)]">
           <dl className="space-y-2 text-sm text-neutral-800">
             <div className="flex justify-between gap-4">
               <dt className="font-medium text-neutral-600">Account Name</dt>
-              <dd className="text-right">Ojen, Agbor</dd>
+              <dd className="text-right">John, Chinedu</dd>
             </div>
             <div className="flex justify-between gap-4">
               <dt className="font-medium text-neutral-600">Bank</dt>
@@ -741,30 +742,23 @@ export default function Home() {
             For any Questions
           </h2>
           <p className="mx-auto mt-3 max-w-md text-sm text-neutral-700">
-            Reach out to any of our coordinators for directions, logistics, or further details.
+            Reach out to the coordinator below for directions, logistics, or further details.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {[
-            { name: "Olabisi", phone: "08165945899" },
-            { name: "Blessing", phone: "09134507822" },
-            { name: "Eniola", phone: "07046228099" },
-          ].map((contact) => (
-            <div
-              key={contact.phone}
-              className="rounded-2xl border border-neutral-200 bg-white px-6 py-5 text-center shadow-[0_18px_40px_rgba(0,0,0,0.03)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,0,0,0.06)]"
-            >
-              <p className="font-serif-display text-lg text-wine">
-                {contact.name}
-              </p>
-              <p className="mt-2 text-sm text-neutral-800">
-                <a href={`tel:${contact.phone}`} className="hover:text-royal">
-                  {contact.phone}
-                </a>
-              </p>
-            </div>
-          ))}
+        <div className="">
+          <div
+            className="rounded-2xl border border-neutral-200 bg-white px-6 py-5 text-center shadow-[0_18px_40px_rgba(0,0,0,0.03)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,0,0,0.06)]"
+          >
+            <p className="font-serif-display text-lg text-wine">
+              Olabisi
+            </p>
+            <p className="mt-2 text-sm text-neutral-800">
+              <a href={`tel:0802 842 3189`} className="hover:text-royal">
+                0802 842 3189
+              </a>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -774,10 +768,10 @@ export default function Home() {
           We can&apos;t wait to share this beautiful day with you.
         </p>
         <p className="mt-3 font-serif-display text-sm text-white/80">
-          With Love, Olamide &amp; Agbor
+          With Love, Uju &amp; Chinedu
         </p>
         <p className="mt-4 text-xs tracking-[0.32em] text-white/60">
-          #THEOASTORY&apos;26
+          #TheCUStory&apos;26
         </p>
       </footer>
     </main>

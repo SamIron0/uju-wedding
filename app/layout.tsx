@@ -25,9 +25,9 @@ const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: "Olamide & Agbor — #TheOAStory'26",
+  title: "Uju & Chinedu — #TheCUStory'26",
   description:
-    "Wedding celebration of Olamide & Agbor — May 30th, 2026 · Ikorodu, Lagos State, Nigeria.",
+    "Wedding celebration of Uju & Chinedu — May 16, 2026 · Ikorodu, Lagos State, Nigeria.",
   icons: {
     icon: "/favicon.svg",
   },

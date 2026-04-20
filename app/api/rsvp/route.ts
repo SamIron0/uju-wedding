@@ -83,15 +83,15 @@ function buildGuestEmailHtml(fullName: string, attending: boolean): string {
   if (!attending) {
     return `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>Thank You — Olamide &amp; Agbor</title></head>
+<head><meta charset="UTF-8"><title>Thank You — Uju &amp; Chinedu</title></head>
 <body style="margin:0;padding:0;background:#f5f3f4;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f3f4;padding:24px 0;">
 <tr><td align="center">
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e3d4d6;">
 <tr>
   <td align="center" style="background:#722F37;padding:28px 20px 22px;">
-    <p style="margin:0;font-family:'Great Vibes','Times New Roman',serif;font-size:28px;color:#fff;">Olamide &amp; Agbor</p>
-    <p style="margin:10px 0 0;font-family:'Cormorant Garamond','Times New Roman',serif;font-size:16px;color:#fbeff0;font-style:italic;">Saturday, May 30th, 2026 &middot; Ikorodu, Lagos</p>
+    <p style="margin:0;font-family:'Great Vibes','Times New Roman',serif;font-size:28px;color:#fff;">Uju &amp; Chinedu</p>
+    <p style="margin:10px 0 0;font-family:'Cormorant Garamond','Times New Roman',serif;font-size:16px;color:#fbeff0;font-style:italic;">Saturday, May 16, 2026 &middot; Ikorodu, Lagos</p>
   </td>
 </tr>
 <tr>
@@ -100,8 +100,8 @@ function buildGuestEmailHtml(fullName: string, attending: boolean): string {
     <p style="margin:0 0 14px;font-size:14px;color:#3d2c30;line-height:1.7;">Thank you so much for letting us know — we truly appreciate you taking the time to respond.</p>
     <p style="margin:0 0 14px;font-size:14px;color:#3d2c30;line-height:1.7;">We're sorry you won't be able to make it in person, but please know that you'll be with us in spirit as we celebrate this beautiful new chapter.</p>
     <p style="margin:0 0 6px;font-size:14px;color:#3d2c30;line-height:1.7;">With so much love and gratitude,</p>
-    <p style="margin:0;font-size:13px;color:#722F37;font-style:italic;">Olamide &amp; Agbor</p>
-    <p style="margin:8px 0 0;font-size:11px;color:#7f5f65;letter-spacing:0.18em;text-transform:uppercase;">#TheOAStory'26</p>
+    <p style="margin:0;font-size:13px;color:#722F37;font-style:italic;">Uju &amp; Chinedu</p>
+    <p style="margin:8px 0 0;font-size:11px;color:#7f5f65;letter-spacing:0.18em;text-transform:uppercase;">#TheCUStory'26</p>
   </td>
 </tr>
 </table>
@@ -113,14 +113,14 @@ function buildGuestEmailHtml(fullName: string, attending: boolean): string {
 
   return `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>You're Invited — Olamide &amp; Agbor</title></head>
+<head><meta charset="UTF-8"><title>You're Invited — Uju &amp; Chinedu</title></head>
 <body style="margin:0;padding:0;background:#f5f3f4;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f3f4;padding:24px 0;">
 <tr><td align="center">
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e3d4d6;">
 <tr>
   <td align="center" style="background:#722F37;padding:32px 20px 26px;">
-    <p style="margin:0;font-family:'Great Vibes','Times New Roman',serif;font-size:30px;color:#fff;">Olamide &amp; Agbor</p>
+    <p style="margin:0;font-family:'Great Vibes','Times New Roman',serif;font-size:30px;color:#fff;">Uju &amp; Chinedu</p>
     <p style="margin:10px 0 0;font-family:'Cormorant Garamond','Times New Roman',serif;font-size:17px;color:#fbeff0;font-style:italic;">You're officially on the list 🎉</p>
   </td>
 </tr>
@@ -134,8 +134,8 @@ function buildGuestEmailHtml(fullName: string, attending: boolean): string {
 <tr>
   <td style="padding:0 24px 28px;">
     <p style="margin:0 0 4px;font-size:13px;color:#3d2c30;line-height:1.6;">We can't wait to celebrate with you.</p>
-    <p style="margin:0 0 6px;font-size:13px;color:#3d2c30;">With Love, Olamide &amp; Agbor</p>
-    <p style="margin:0;font-size:11px;color:#7f5f65;letter-spacing:0.18em;text-transform:uppercase;">#TheOAStory'26</p>
+    <p style="margin:0 0 6px;font-size:13px;color:#3d2c30;">With Love, Uju &amp; Chinedu</p>
+    <p style="margin:0;font-size:11px;color:#7f5f65;letter-spacing:0.18em;text-transform:uppercase;">#TheCUStory'26</p>
   </td>
 </tr>
 </table>
@@ -165,7 +165,7 @@ function buildOrganiserEmailHtml(payload: {
         <tr>
           <td style="padding:16px 18px 4px 18px;">
             <h1 style="margin:0 0 6px 0;font-size:17px;color:#1a0a0c;">New RSVP Received</h1>
-            <p style="margin:0;font-size:12px;color:#7a5d64;">Wedding of Olamide &amp; Agbor — #TheOAStory'26</p>
+            <p style="margin:0;font-size:12px;color:#7a5d64;">Wedding of Uju &amp; Chinedu — #TheCUStory'26</p>
           </td>
         </tr>
         <tr>
@@ -285,19 +285,19 @@ export async function POST(req: Request) {
           },
         }),
         resend.emails.send({
-          from: `OAStory <${process.env.RESEND_FROM_EMAIL!}>`,
+          from: `CUStory <${process.env.RESEND_FROM_EMAIL!}>`,
           to: email,
-          subject: "You're Invited — Olamide & Agbor Wedding 🎉",
+          subject: "You're Invited — Uju & Chinedu Wedding 🎉",
           html: buildGuestEmailHtml(fullName, true),
           attachments: [
             {
-              filename: `OA-Wedding-Invite-${claimedCode}.pdf`,
+              filename: `CU-Wedding-Invite-${claimedCode}.pdf`,
               path: getInviteBlobUrl(claimedCode),
             },
           ],
         }),
         resend.emails.send({
-          from: `OAStory <${process.env.RESEND_FROM_EMAIL!}>`,
+          from: `CUStory <${process.env.RESEND_FROM_EMAIL!}>`,
           to: process.env.ORGANISER_EMAIL!,
           subject: `New RSVP — ${fullName}`,
           html: buildOrganiserEmailHtml({
@@ -324,7 +324,7 @@ export async function POST(req: Request) {
         resend.emails.send({
           from: process.env.RESEND_FROM_EMAIL!,
           to: email,
-          subject: "Thank You for Your RSVP — Olamide & Agbor",
+          subject: "Thank You for Your RSVP — Uju & Chinedu",
           html: buildGuestEmailHtml(fullName, false),
         }),
         resend.emails.send({

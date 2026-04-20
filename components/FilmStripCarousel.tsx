@@ -246,7 +246,7 @@ export function FilmStripCarousel({ images }: FilmStripCarouselProps) {
                     {frameNumber}
                   </span>
                   <span className="font-serif-display text-[10px] italic text-white/30">
-                    #TheOAStory&apos;26
+                    #TheCUStory&apos;26
                   </span>
                 </div>
               </div>
