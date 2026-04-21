@@ -6,6 +6,7 @@ type RsvpPayload = {
   fullName?: string;
   phone?: string;
   email?: string;
+  category?: string;
   attending?: boolean;
 };
 
@@ -25,59 +26,8 @@ function getSheetsClient() {
   return _sheetsClient;
 }
 
-// ── Single batchGet for both sheets ─────────────────────────────────────────
-async function batchReadSheets(): Promise<{
-  sheet1Rows: string[][];
-  sheet2Rows: string[][];
-}> {
-  const sheets = getSheetsClient();
-  const res = await sheets.spreadsheets.values.batchGet({
-    spreadsheetId: process.env.GOOGLE_SHEET_ID,
-    ranges: ["Sheet1!A:F", "Sheet2!A:B"],
-  });
-
-  const [sheet1Data, sheet2Data] = res.data.valueRanges ?? [];
-  const sheet1All = (sheet1Data?.values ?? []) as string[][];
-  const sheet2All = (sheet2Data?.values ?? []) as string[][];
-
-  return {
-    sheet1Rows: sheet1All.slice(1),
-    sheet2Rows: sheet2All,
-  };
-}
-
-// ── Claim invite code from already-fetched Sheet2 rows ───────────────────────
-async function claimInviteCodeFromRows(sheet2Rows: string[][]): Promise<number> {
-  let claimedCode: number | null = null;
-  let claimedSheetRow: number | null = null;
-
-  for (let i = 1; i < sheet2Rows.length; i++) {
-    const [code, used] = sheet2Rows[i];
-    if (used === "FALSE") {
-      claimedCode = Number(code);
-      claimedSheetRow = i + 1;
-      break;
-    }
-  }
-
-  if (claimedCode === null || claimedSheetRow === null || Number.isNaN(claimedCode)) {
-    throw new Error("No unused invite cards remain in Sheet2.");
-  }
-
-  await getSheetsClient().spreadsheets.values.update({
-    spreadsheetId: process.env.GOOGLE_SHEET_ID,
-    range: `Sheet2!B${claimedSheetRow}`,
-    valueInputOption: "USER_ENTERED",
-    requestBody: { values: [["TRUE"]] },
-  });
-
-  return claimedCode;
-}
-
-// ── Public blob URL — no auth required ──────────────────────────────────────
-function getInviteBlobUrl(code: number): string {
-  return `https://arnhmw1aq5cozuh4.public.blob.vercel-storage.com/Card%20${code}.pdf`;
-}
+const INVITE_IMAGE_URL =
+  "https://thmmmaqcwcyesthh.public.blob.vercel-storage.com/invite.jpeg";
 
 function buildGuestEmailHtml(fullName: string, attending: boolean): string {
   if (!attending) {
@@ -149,9 +99,9 @@ function buildOrganiserEmailHtml(payload: {
   fullName: string;
   phone: string;
   email: string;
+  category: string;
   attending: boolean;
   timestamp: string;
-  inviteCode: string;
 }): string {
   return `
   <!DOCTYPE html>
@@ -188,8 +138,8 @@ function buildOrganiserEmailHtml(payload: {
                 <td style="padding:6px 4px;">${payload.attending ? "Yes" : "No"}</td>
               </tr>
               <tr>
-                <td style="padding:6px 4px;font-weight:600;">Invite Code</td>
-                <td style="padding:6px 4px;">${payload.inviteCode}</td>
+                <td style="padding:6px 4px;font-weight:600;">Category</td>
+                <td style="padding:6px 4px;">${payload.category}</td>
               </tr>
               <tr>
                 <td style="padding:6px 4px;font-weight:600;">Received At</td>
@@ -211,9 +161,10 @@ export async function POST(req: Request) {
     const fullName = (body.fullName ?? "").trim();
     const phone = (body.phone ?? "").trim();
     const email = (body.email ?? "").trim();
+    const category = (body.category ?? "").trim();
     const attending = Boolean(body.attending);
 
-    if (!fullName || !phone || !email) {
+    if (!fullName || !phone || !email || !category) {
       return NextResponse.json(
         { error: "Missing required fields." },
         { status: 400 }
@@ -236,112 +187,55 @@ export async function POST(req: Request) {
       );
     }
 
-    // ── 1. Single batchGet — Sheet1 + Sheet2 in one round-trip ──────────────
-    const { sheet1Rows, sheet2Rows } = await batchReadSheets();
-
-    // ── 2. Duplicate check ───────────────────────────────────────────────────
-    const emailExists = sheet1Rows.some(
-      (row) => row[3]?.toLowerCase().trim() === email.toLowerCase()
-    );
-    const phoneExists = sheet1Rows.some(
-      (row) => row[2]?.trim() === phone
-    );
-
-    if (emailExists) {
-      return NextResponse.json(
-        { error: "This email address has already been used to RSVP." },
-        { status: 409 }
-      );
-    }
-    if (phoneExists) {
-      return NextResponse.json(
-        { error: "This phone number has already been used to RSVP." },
-        { status: 409 }
-      );
-    }
-
     const timestamp = new Date().toLocaleString("en-NG", {
       timeZone: "Africa/Lagos",
       dateStyle: "medium",
       timeStyle: "short",
     });
 
-    // ── 3. Attending path: claim code → sheet append + emails concurrently ───
-    let claimedCode: number | null = null;
-
-    if (attending) {
-      // Must be sequential — atomic claim before anything else
-      claimedCode = await claimInviteCodeFromRows(sheet2Rows);
-
-      // Sheet append and both emails all fire concurrently —
-      // PDF is now a URL reference, no buffer fetch needed
-      await Promise.all([
-        getSheetsClient().spreadsheets.values.append({
-          spreadsheetId: process.env.GOOGLE_SHEET_ID,
-          range: "Sheet1!A:F",
-          valueInputOption: "RAW",
-          requestBody: {
-            values: [[timestamp, fullName, phone, email, "Yes", String(claimedCode)]],
+    await Promise.all([
+      getSheetsClient().spreadsheets.values.append({
+        spreadsheetId: process.env.GOOGLE_SHEET_ID,
+        range: "Sheet1!A:F",
+        valueInputOption: "RAW",
+        requestBody: {
+          values: [[timestamp, fullName, phone, email, category, attending ? "Yes" : "No"]],
+        },
+      }),
+      resend.emails.send({
+        from: `CUStory <${process.env.RESEND_FROM_EMAIL!}>`,
+        to: email,
+        subject: attending
+          ? "You're Invited — Uju & Chinedu Wedding 🎉"
+          : "Thank You for Your RSVP — Uju & Chinedu",
+        html: buildGuestEmailHtml(fullName, attending),
+        attachments: [
+          {
+            filename: "invite.jpeg",
+            path: INVITE_IMAGE_URL,
           },
+        ],
+      }),
+      resend.emails.send({
+        from: `CUStory <${process.env.RESEND_FROM_EMAIL!}>`,
+        to: process.env.ORGANISER_EMAIL!,
+        subject: `New RSVP — ${fullName}`,
+        html: buildOrganiserEmailHtml({
+          fullName,
+          phone,
+          email,
+          category,
+          attending,
+          timestamp,
         }),
-        resend.emails.send({
-          from: `CUStory <${process.env.RESEND_FROM_EMAIL!}>`,
-          to: email,
-          subject: "You're Invited — Uju & Chinedu Wedding 🎉",
-          html: buildGuestEmailHtml(fullName, true),
-          attachments: [
-            {
-              filename: `CU-Wedding-Invite-${claimedCode}.pdf`,
-              path: getInviteBlobUrl(claimedCode),
-            },
-          ],
-        }),
-        resend.emails.send({
-          from: `CUStory <${process.env.RESEND_FROM_EMAIL!}>`,
-          to: process.env.ORGANISER_EMAIL!,
-          subject: `New RSVP — ${fullName}`,
-          html: buildOrganiserEmailHtml({
-            fullName,
-            phone,
-            email,
-            attending: true,
-            timestamp,
-            inviteCode: String(claimedCode),
-          }),
-        }),
-      ]);
-    } else {
-      // Non-attending: sheet append and both emails concurrently, no PDF
-      await Promise.all([
-        getSheetsClient().spreadsheets.values.append({
-          spreadsheetId: process.env.GOOGLE_SHEET_ID,
-          range: "Sheet1!A:F",
-          valueInputOption: "RAW",
-          requestBody: {
-            values: [[timestamp, fullName, phone, email, "No", "N/A"]],
+        attachments: [
+          {
+            filename: "invite.jpeg",
+            path: INVITE_IMAGE_URL,
           },
-        }),
-        resend.emails.send({
-          from: process.env.RESEND_FROM_EMAIL!,
-          to: email,
-          subject: "Thank You for Your RSVP — Uju & Chinedu",
-          html: buildGuestEmailHtml(fullName, false),
-        }),
-        resend.emails.send({
-          from: process.env.RESEND_FROM_EMAIL!,
-          to: process.env.ORGANISER_EMAIL!,
-          subject: `New RSVP — ${fullName}`,
-          html: buildOrganiserEmailHtml({
-            fullName,
-            phone,
-            email,
-            attending: false,
-            timestamp,
-            inviteCode: "N/A",
-          }),
-        }),
-      ]);
-    }
+        ],
+      }),
+    ]);
 
     return NextResponse.json({ success: true });
   } catch (error) {
