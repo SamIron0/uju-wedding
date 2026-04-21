@@ -28,6 +28,16 @@ function getSheetsClient() {
 
 const INVITE_IMAGE_URL =
   "https://thmmmaqcwcyesthh.public.blob.vercel-storage.com/invite.jpeg";
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+async function getSheet1Rows(): Promise<string[][]> {
+  const res = await getSheetsClient().spreadsheets.values.get({
+    spreadsheetId: process.env.GOOGLE_SHEET_ID,
+    range: "Sheet1!A:F",
+  });
+  const allRows = (res.data.values ?? []) as string[][];
+  return allRows.slice(1);
+}
 
 function buildGuestEmailHtml(fullName: string, attending: boolean): string {
   if (!attending) {
@@ -41,7 +51,7 @@ function buildGuestEmailHtml(fullName: string, attending: boolean): string {
 <tr>
   <td align="center" style="background:#722F37;padding:28px 20px 22px;">
     <p style="margin:0;font-family:'Great Vibes','Times New Roman',serif;font-size:28px;color:#fff;">Uju &amp; Chinedu</p>
-    <p style="margin:10px 0 0;font-family:'Cormorant Garamond','Times New Roman',serif;font-size:16px;color:#fbeff0;font-style:italic;">Saturday, May 16, 2026 &middot; Ikorodu, Lagos</p>
+    <p style="margin:10px 0 0;font-family:'Cormorant Garamond','Times New Roman',serif;font-size:16px;color:#fbeff0;font-style:italic;">Saturday, May 16, 2026 &middot; Ikeja, Lagos</p>
   </td>
 </tr>
 <tr>
@@ -170,6 +180,12 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
+    if (!EMAIL_REGEX.test(email)) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address." },
+        { status: 400 }
+      );
+    }
 
     const missingEnvVars = [
       "GOOGLE_SERVICE_ACCOUNT_EMAIL",
@@ -184,6 +200,17 @@ export async function POST(req: Request) {
       return NextResponse.json(
         { error: "Server configuration is incomplete." },
         { status: 500 }
+      );
+    }
+
+    const sheet1Rows = await getSheet1Rows();
+    const emailExists = sheet1Rows.some(
+      (row) => row[3]?.trim().toLowerCase() === email.toLowerCase()
+    );
+    if (emailExists) {
+      return NextResponse.json(
+        { error: "This email address has already been used to RSVP." },
+        { status: 409 }
       );
     }
 
@@ -209,12 +236,14 @@ export async function POST(req: Request) {
           ? "You're Invited — Uju & Chinedu Wedding 🎉"
           : "Thank You for Your RSVP — Uju & Chinedu",
         html: buildGuestEmailHtml(fullName, attending),
-        attachments: [
-          {
-            filename: "invite.jpeg",
-            path: INVITE_IMAGE_URL,
-          },
-        ],
+        attachments: attending
+          ? [
+              {
+                filename: "invite.jpeg",
+                path: INVITE_IMAGE_URL,
+              },
+            ]
+          : undefined,
       }),
       resend.emails.send({
         from: `CUStory <${process.env.RESEND_FROM_EMAIL!}>`,
@@ -228,12 +257,14 @@ export async function POST(req: Request) {
           attending,
           timestamp,
         }),
-        attachments: [
-          {
-            filename: "invite.jpeg",
-            path: INVITE_IMAGE_URL,
-          },
-        ],
+        attachments: attending
+          ? [
+              {
+                filename: "invite.jpeg",
+                path: INVITE_IMAGE_URL,
+              },
+            ]
+          : undefined,
       }),
     ]);
 

@@ -27,7 +27,7 @@ const greatVibes = Great_Vibes({
 export const metadata: Metadata = {
   title: "Uju & Chinedu — #TheCUStory'26",
   description:
-    "Wedding celebration of Uju & Chinedu — May 16, 2026 · Ikorodu, Lagos State, Nigeria.",
+    "Wedding celebration of Uju & Chinedu — May 16, 2026 · Ikeja, Lagos State, Nigeria.",
   icons: {
     icon: "/favicon.svg",
   },

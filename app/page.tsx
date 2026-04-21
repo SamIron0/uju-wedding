@@ -282,7 +282,7 @@ export default function Home() {
             </p>
 
             <p>
-              Join us in Ikorodu, Lagos State, on{" "}
+              Join us in Ikeja, Lagos State, on{" "}
               <span className="font-medium text-wine">Saturday, May 30, 2026</span> as we tell{" "}
               <span className="font-script text-wine text-xl align-middle">
                 #TheCUStory&apos;26
@@ -525,7 +525,7 @@ export default function Home() {
           <div className="overflow-hidden rounded-2xl border border-wine/60 bg-white shadow-[0_24px_60px_rgba(0,0,0,0.08)]">
             <div className="aspect-[4/3] w-full">
 
-              <iframe title="Wedding Venues in Ikorodu"
+              <iframe title="Wedding Venues in Ikeja"
                 className="h-full w-full border-0"
                 src="https://www.google.com/maps/d/u/0/embed?mid=11mni5qODnzvOKNz6lO7p1oApGd6LTks&ehbc=2E312F">
               </iframe>
@@ -556,10 +556,6 @@ export default function Home() {
               <p className="mt-6 max-w-xs text-sm text-white/80">
                 Your presence means the world to us. Kindly RSVP on or before{" "}
                 <span className="font-semibold">Sunday, May 10, 2026</span>.
-              </p>
-              <p className="mt-4 max-w-xs text-xs text-white/80">
-                Please note: this is a strictly by-invitation event. Submit this request to receive
-                your digital access card in your inbox.
               </p>
             </div>
             <p className="mt-10 text-[11px] uppercase tracking-[0.25em] text-white/60">
