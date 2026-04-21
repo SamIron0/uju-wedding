@@ -243,60 +243,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Welcome / Introduction */}
-      <section
-        id="welcome"
-        ref={introRef}
-        className="mx-auto max-w-5xl px-6 py-16 md:px-10 lg:px-0 lg:py-20"
-      >
-        <div className="mb-10 flex justify-start">
-          <div className="h-px w-24 bg-wine" />
-        </div>
-        <div className="grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,4fr)] md:items-start">
-          <div className="md:pr-10">
-            <p className="font-serif-display text-3xl leading-tight text-foreground md:text-4xl">
-              Love is not just a feeling — it&apos;s a choice. It&apos;s progressive!
-            </p>
-          </div>
-          <div className="space-y-6 text-sm leading-relaxed text-neutral-700 md:text-base">
-            <p>
-              Every love story has its own path. Ours started right next door to each other.
-            </p>
-
-            <p>
-              We were neighbours in Lekki Phase 2. What began as simple greetings and{" "}
-              <span className="italic text-neutral-500">cash supplier</span>{" "}
-              <span className="text-xs text-neutral-400">(during the 2023 cash crunch)</span>{" "}
-              slowly turned into conversations, then friendship and argumentators, then food exploration buddies, then something deeper than either of us expected.
-              Somewhere between the laughter, the long talks, and the everyday moments, we realised we had found something real.
-            </p>
-
-            <p>
-              Over time, we&apos;ve grown together, learned from each other, stood by each other, and been a big part of
-              each other&apos;s life decisions through different seasons of life.
-            </p>
-
-            <p className="font-serif-display text-base italic text-foreground md:text-lg">
-              Now we&apos;re beginning a new chapter — grateful for the journey that brought us here, and
-              thankful to share this moment with the people who mean the most to us.
-            </p>
-
-            <p>
-              Join us in Ikeja, Lagos State, on{" "}
-              <span className="font-medium text-wine">Saturday, May 30, 2026</span> as we tell{" "}
-              <span className="font-script text-wine text-xl align-middle">
-                #TheCUStory&apos;26
-              </span>
-              .
-            </p>
-            <WeddingColours />
-          </div>
-        </div>
-      </section>
-      <div className="section-divider px-6 lg:px-0">
-        <span className="section-divider-icon" />
-      </div>
-
       {/* Couple photo gallery – scattered polaroid wall */}
       <section
         ref={gallery.ref}
@@ -354,7 +300,7 @@ export default function Home() {
             >
               <div className="relative aspect-square w-full overflow-hidden px-5 lg:px-0">
                 <Image
-                  src="/images/couple-13.jpg"
+                  src="/images/couple-31.jpg"
                   alt="Uju and Chinedu — just us"
                   fill
                   sizes="(max-width: 1023px) 80vw, 320px"
@@ -417,27 +363,43 @@ export default function Home() {
 
         <FilmStripCarousel
           images={[
-            { src: "/images/couple-3.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-4.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-5.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-6.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-7.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-8.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-9.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-10.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-11.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-12.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-13.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-14.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-15.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-16.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-17.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-32.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-4.JPG", alt: "Uju and Chinedu" },
+            { src: "/images/couple-28.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-11.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-39.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-7.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-24.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-35.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-14.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-30.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-5.JPG", alt: "Uju and Chinedu" },
+            { src: "/images/couple-21.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-37.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-9.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-26.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-18.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-33.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-12.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-29.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-6.JPG", alt: "Uju and Chinedu" },
+            { src: "/images/couple-23.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-38.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-15.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-27.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-10.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-34.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-19.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-20.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-21.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-31.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-8.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-22.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-23.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-36.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-13.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-25.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-3.JPG", alt: "Uju and Chinedu" },
+            { src: "/images/couple-16.jpg", alt: "Uju and Chinedu" },
           ]}
         />
       </section>
@@ -460,9 +422,6 @@ export default function Home() {
               Saturday, May 16, 2026
             </h2>
           </div>
-          <p className="max-w-xs text-xs text-neutral-500 italic md:text-right">
-            One story told in two chapters — a unified celebration of faith, and joy.
-          </p>
         </div>
 
         <div className="relative">
@@ -674,86 +633,6 @@ export default function Home() {
                 <span>Send My RSVP</span>
               </button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider px-6 lg:px-0">
-        <span className="section-divider-icon" />
-      </div>
-
-      {/* Support / Gift */}
-      <section
-        ref={supportRef}
-        className="mx-auto max-w-5xl px-6 py-16 text-center md:px-10 lg:px-0 lg:py-20"
-      >
-        <h2 className="font-serif-display text-3xl text-foreground md:text-4xl">
-          Gifts & Support
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-sm text-neutral-700 md:text-base">
-          If you&apos;d like to support us, a monetary gift can be sent here:
-        </p>
-
-        <div className="mx-auto mt-8 max-w-md rounded-2xl border border-wine bg-white px-6 py-5 text-left shadow-[0_18px_40px_rgba(0,0,0,0.05)]">
-          <dl className="space-y-2 text-sm text-neutral-800">
-            <div className="flex justify-between gap-4">
-              <dt className="font-medium text-neutral-600">Account Name</dt>
-              <dd className="text-right">John, Chinedu</dd>
-            </div>
-            <div className="flex justify-between gap-4">
-              <dt className="font-medium text-neutral-600">Bank</dt>
-              <dd className="text-right">AG Mortgage Bank PLC</dd>
-            </div>
-            <div className="flex justify-between gap-4">
-              <dt className="font-medium text-neutral-600">Account Number</dt>
-              <dd className="text-right">0000711380</dd>
-            </div>
-          </dl>
-          <div className="mt-4 flex justify-end">
-            <button
-              type="button"
-              onClick={handleCopyAccount}
-              className="rounded-full border border-wine/70 bg-white px-4 py-1.5 text-xs font-medium text-wine transition hover:bg-wine hover:text-white"
-            >
-              {copied ? "Copied ✓" : "Copy account number"}
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider px-6 lg:px-0">
-        <span className="section-divider-icon" />
-      </div>
-
-      {/* Contact */}
-      <section
-        ref={contactRef}
-        className="mx-auto max-w-5xl px-6 py-16 md:px-10 lg:px-0 lg:py-20"
-      >
-        <div className="mb-8 text-center">
-          <p className="font-serif-display text-sm uppercase tracking-[0.24em] text-neutral-500">
-            Contact
-          </p>
-          <h2 className="mt-2 font-serif-display text-2xl text-foreground md:text-3xl">
-            For any Questions
-          </h2>
-          <p className="mx-auto mt-3 max-w-md text-sm text-neutral-700">
-            Reach out to the coordinator below for directions, logistics, or further details.
-          </p>
-        </div>
-
-        <div className="">
-          <div
-            className="rounded-2xl border border-neutral-200 bg-white px-6 py-5 text-center shadow-[0_18px_40px_rgba(0,0,0,0.03)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,0,0,0.06)]"
-          >
-            <p className="font-serif-display text-lg text-wine">
-              Olabisi
-            </p>
-            <p className="mt-2 text-sm text-neutral-800">
-              <a href={`tel:0802 842 3189`} className="hover:text-royal">
-                0802 842 3189
-              </a>
-            </p>
           </div>
         </div>
       </section>
