@@ -365,7 +365,7 @@ export default function Home() {
           images={[
             { src: "/images/couple-17.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-32.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-4.JPG", alt: "Uju and Chinedu" },
+            { src: "/images/couple-4.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-28.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-11.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-39.jpg", alt: "Uju and Chinedu" },
@@ -374,7 +374,7 @@ export default function Home() {
             { src: "/images/couple-35.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-14.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-30.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-5.JPG", alt: "Uju and Chinedu" },
+            { src: "/images/couple-5.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-21.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-37.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-9.jpg", alt: "Uju and Chinedu" },
@@ -383,7 +383,7 @@ export default function Home() {
             { src: "/images/couple-33.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-12.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-29.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-6.JPG", alt: "Uju and Chinedu" },
+            { src: "/images/couple-6.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-23.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-38.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-15.jpg", alt: "Uju and Chinedu" },
@@ -398,7 +398,7 @@ export default function Home() {
             { src: "/images/couple-36.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-13.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-25.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-3.JPG", alt: "Uju and Chinedu" },
+            { src: "/images/couple-3.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-16.jpg", alt: "Uju and Chinedu" },
           ]}
         />
