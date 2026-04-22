@@ -10,20 +10,20 @@ const colours = [
     labelColour: "#a3a3a3",
   },
   {
-    name: "Wine",
+    name: "Burnt Orange",
     gradient:
-      "radial-gradient(circle at 35% 35%, #a04050 0%, #722f37 45%, #4a1a20 100%)",
+      "radial-gradient(circle at 35% 35%, #cf6f42 0%, #b5522b 45%, #7f3418 100%)",
     border: "2px solid rgba(255,255,255,0.15)",
     highlight: "rgba(255,255,255,0.3)",
-    labelColour: "#722f37",
+    labelColour: "#b5522b",
   },
   {
-    name: "Royal Blue",
+    name: "Gold",
     gradient:
-      "radial-gradient(circle at 35% 35%, #3560c0 0%, #1d3b8c 45%, #0e1f4e 100%)",
-    border: "2px solid rgba(255,255,255,0.15)",
+      "radial-gradient(circle at 35% 35%, #f3da7a 0%, #d4af37 45%, #997915 100%)",
+    border: "2px solid rgba(111,47,22,0.22)",
     highlight: "rgba(255,255,255,0.25)",
-    labelColour: "#1d3b8c",
+    labelColour: "#997915",
   },
 ];
 

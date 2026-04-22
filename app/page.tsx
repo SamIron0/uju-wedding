@@ -206,7 +206,7 @@ export default function Home() {
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/30 to-black/10" />
-          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#2c060b]/80 via-transparent to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#7a3218]/80 via-transparent to-transparent" />
         </div>
 
         <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center text-white">
@@ -425,8 +425,8 @@ export default function Home() {
         </div>
 
         <div className="relative">
-          <div className="pointer-events-none absolute left-1/2 top-8 hidden h-[260px] -translate-x-1/2 border-l border-dashed border-royal/40 md:block lg:hidden" />
-          <div className="hidden h-0.5 w-full bg-gradient-to-r from-wine/10 via-royal/40 to-wine/10 lg:block" />
+          <div className="pointer-events-none absolute left-1/2 top-8 hidden h-[260px] -translate-x-1/2 border-l border-dashed border-royal/60 md:block lg:hidden" />
+          <div className="hidden h-0.5 w-full bg-gradient-to-r from-wine/15 via-royal/70 to-wine/15 lg:block" />
           <div className="mt-10 grid gap-12 md:grid-cols-2 md:gap-8">
             <article className="relative space-y-3 border border-neutral-200/80 bg-white/70 p-6 shadow-[0_18px_40px_rgba(0,0,0,0.03)] backdrop-blur-sm">
               <p className="font-serif-display text-2xl text-wine">10:00 AM</p>
@@ -625,7 +625,7 @@ export default function Home() {
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-wine px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.22em] text-white shadow-[0_14px_30px_rgba(114,47,55,0.35)] transition hover:bg-royal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wine/40 disabled:cursor-not-allowed disabled:bg-wine/60"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-wine px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.22em] text-white shadow-[0_14px_30px_rgba(181,82,43,0.35)] transition hover:bg-royal hover:text-[#3d2502] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wine/40 disabled:cursor-not-allowed disabled:bg-wine/60"
               >
                 {isSubmitting && (
                   <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />

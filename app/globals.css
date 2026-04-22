@@ -2,9 +2,9 @@
 
 :root {
   --color-page: #ffffff;
-  --color-wine: #722f37;
-  --color-royal: #1d3b8c;
-  --color-foreground: #722f37;
+  --color-wine: #b5522b;
+  --color-royal: #d4af37;
+  --color-foreground: #6f2f16;
 }
 
 @theme inline {
@@ -101,7 +101,7 @@ body {
   background: linear-gradient(
     to right,
     transparent,
-    rgba(26, 10, 12, 0.18),
+    rgba(111, 47, 22, 0.22),
     transparent
   );
 }
@@ -110,7 +110,7 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 999px;
-  border: 1px solid rgba(26, 10, 12, 0.4);
+  border: 1px solid rgba(111, 47, 22, 0.42);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);
   background: linear-gradient(135deg, var(--color-wine), var(--color-royal));
 }
