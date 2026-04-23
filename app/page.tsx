@@ -382,7 +382,6 @@ export default function Home() {
             { src: "/images/couple-18.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-33.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-12.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-29.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-6.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-23.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-38.jpg", alt: "Uju and Chinedu" },
@@ -434,10 +433,10 @@ export default function Home() {
                 Wedding Mass
               </h3>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-royal">
-                St. Leo&apos;s Catholic Church God
+                St. Leo&apos;s Catholic Church
               </p>
               <p className="text-xs text-neutral-600">
-                7 Amore Street, Allen, Ikeja, Lagos State
+                St. Leo&apos;s Catholic Church Toyin Street, Ikeja, Lagos State
               </p>
             </article>
 
@@ -486,7 +485,7 @@ export default function Home() {
 
               <iframe title="Wedding Venues in Ikeja"
                 className="h-full w-full border-0"
-                src="https://www.google.com/maps/d/u/0/embed?mid=11mni5qODnzvOKNz6lO7p1oApGd6LTks&ehbc=2E312F">
+                src="https://www.google.com/maps/d/u/0/viewer?mid=1am7T6h8_nHCV2Awm7B2mDdeb_AejTD4">
               </iframe>
             </div>
           </div>
