@@ -26,9 +26,26 @@ function getSheetsClient() {
   return _sheetsClient;
 }
 
-const INVITE_IMAGE_URL =
-  "https://thmmmaqcwcyesthh.public.blob.vercel-storage.com/invite.jpeg";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+type InviteCategoryConfig = {
+  sheetName: string;
+  folderName: string;
+};
+
+type AvailableInvite = {
+  inviteCode: string;
+  folderName: string;
+  sheetName: string;
+  sheetRow: number;
+};
+
+const CATEGORY_CONFIG: Record<string, InviteCategoryConfig> = {
+  "abanas-family": { sheetName: "ab-invites", folderName: "ab-invites" },
+  "obis-family": { sheetName: "ob-invites", folderName: "ob-invites" },
+  csu: { sheetName: "cs-invites", folderName: "cs-invites" },
+  general: { sheetName: "gn-invites", folderName: "gn-invites" },
+};
 
 async function getSheet1Rows(): Promise<string[][]> {
   const res = await getSheetsClient().spreadsheets.values.get({
@@ -112,6 +129,7 @@ function buildOrganiserEmailHtml(payload: {
   category: string;
   attending: boolean;
   timestamp: string;
+  inviteCode?: string;
 }): string {
   return `
   <!DOCTYPE html>
@@ -164,6 +182,63 @@ function buildOrganiserEmailHtml(payload: {
   `;
 }
 
+function isTaken(value: string | undefined): boolean {
+  const normalized = (value ?? "").trim().toLowerCase();
+  return normalized === "true" || normalized === "yes" || normalized === "1";
+}
+
+async function findAvailableInviteCodeForCategory(
+  category: string
+): Promise<AvailableInvite> {
+  const config = CATEGORY_CONFIG[category];
+  if (!config) {
+    throw new Error(`Unsupported RSVP category "${category}".`);
+  }
+
+  const rowsRes = await getSheetsClient().spreadsheets.values.get({
+    spreadsheetId: process.env.GOOGLE_SHEET_ID,
+    range: `${config.sheetName}!A2:B`,
+  });
+
+  const rows = (rowsRes.data.values ?? []) as string[][];
+  const availableIndex = rows.findIndex((row) => {
+    const code = (row[0] ?? "").trim();
+    const taken = row[1];
+    return Boolean(code) && !isTaken(taken);
+  });
+
+  if (availableIndex === -1) {
+    throw new Error(`No available invite codes in "${config.sheetName}".`);
+  }
+
+  return {
+    inviteCode: rows[availableIndex][0].trim(),
+    folderName: config.folderName,
+    sheetName: config.sheetName,
+    sheetRow: availableIndex + 2, // Starts at row 2.
+  };
+}
+
+async function claimInviteCode(
+  sheetName: string,
+  sheetRow: number
+): Promise<void> {
+  await getSheetsClient().spreadsheets.values.update({
+    spreadsheetId: process.env.GOOGLE_SHEET_ID,
+    range: `${sheetName}!B${sheetRow}`,
+    valueInputOption: "RAW",
+    requestBody: { values: [["TRUE"]] },
+  });
+}
+
+function buildInviteAttachment(folderName: string, inviteCode: string) {
+  const baseUrl =
+    process.env.INVITE_BLOB_BASE_URL?.trim();
+  const filename = `${inviteCode}.pdf`;
+  const path = `${baseUrl}/${folderName}/${filename}`;
+  return { filename, path };
+}
+
 // ── Route handler ────────────────────────────────────────────────────────────
 export async function POST(req: Request) {
   try {
@@ -203,7 +278,18 @@ export async function POST(req: Request) {
       );
     }
 
-    const sheet1Rows = await getSheet1Rows();
+    let sheet1Rows: string[][] = [];
+    let availableInvite: AvailableInvite | undefined;
+
+    if (attending) {
+      [sheet1Rows, availableInvite] = await Promise.all([
+        getSheet1Rows(),
+        findAvailableInviteCodeForCategory(category),
+      ]);
+    } else {
+      sheet1Rows = await getSheet1Rows();
+    }
+
     const emailExists = sheet1Rows.some(
       (row) => row[3]?.trim().toLowerCase() === email.toLowerCase()
     );
@@ -220,13 +306,40 @@ export async function POST(req: Request) {
       timeStyle: "short",
     });
 
+    let inviteCode = "";
+    let inviteAttachment:
+      | {
+        filename: string;
+        path: string;
+      }
+      | undefined;
+
+    if (attending && availableInvite) {
+      await claimInviteCode(availableInvite.sheetName, availableInvite.sheetRow);
+      inviteCode = availableInvite.inviteCode;
+      inviteAttachment = buildInviteAttachment(
+        availableInvite.folderName,
+        inviteCode
+      );
+    }
+
     await Promise.all([
       getSheetsClient().spreadsheets.values.append({
         spreadsheetId: process.env.GOOGLE_SHEET_ID,
-        range: "Sheet1!A:F",
+        range: "Sheet1!A:G",
         valueInputOption: "RAW",
         requestBody: {
-          values: [[timestamp, fullName, phone, email, category, attending ? "Yes" : "No"]],
+          values: [
+            [
+              timestamp,
+              fullName,
+              phone,
+              email,
+              category,
+              attending ? "Yes" : "No",
+              inviteCode,
+            ],
+          ],
         },
       }),
       resend.emails.send({
@@ -237,12 +350,7 @@ export async function POST(req: Request) {
           : "Thank You for Your RSVP — Uju & Chinedu",
         html: buildGuestEmailHtml(fullName, attending),
         attachments: attending
-          ? [
-              {
-                filename: "invite.jpeg",
-                path: INVITE_IMAGE_URL,
-              },
-            ]
+          ? [inviteAttachment!]
           : undefined,
       }),
       resend.emails.send({
@@ -256,15 +364,8 @@ export async function POST(req: Request) {
           category,
           attending,
           timestamp,
+          inviteCode,
         }),
-        attachments: attending
-          ? [
-              {
-                filename: "invite.jpeg",
-                path: INVITE_IMAGE_URL,
-              },
-            ]
-          : undefined,
       }),
     ]);
 

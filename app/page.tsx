@@ -436,7 +436,7 @@ export default function Home() {
                 St. Leo&apos;s Catholic Church
               </p>
               <p className="text-xs text-neutral-600">
-                St. Leo&apos;s Catholic Church Toyin Street, Ikeja, Lagos State
+                St. Leo&apos;s Catholic Church Toyin Street
               </p>
             </article>
 
@@ -632,6 +632,43 @@ export default function Home() {
                 <span>Send My RSVP</span>
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider px-6 lg:px-0">
+        <span className="section-divider-icon" />
+      </div>
+
+      {/* Contact */}
+      <section
+        ref={contactRef}
+        className="mx-auto max-w-5xl px-6 py-16 md:px-10 lg:px-0 lg:py-20"
+      >
+        <div className="mb-8 text-center">
+          <p className="font-serif-display text-sm uppercase tracking-[0.24em] text-neutral-500">
+            Contact
+          </p>
+          <h2 className="mt-2 font-serif-display text-2xl text-foreground md:text-3xl">
+            For any Questions
+          </h2>
+          <p className="mx-auto mt-3 max-w-md text-sm text-neutral-700">
+            Reach out to the coordinator below for directions, logistics, or further details.
+          </p>
+        </div>
+
+        <div className="">
+          <div
+            className="rounded-2xl border border-neutral-200 bg-white px-6 py-5 text-center shadow-[0_18px_40px_rgba(0,0,0,0.03)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,0,0,0.06)]"
+          >
+            <p className="font-serif-display text-lg text-wine">
+              Olabisi
+            </p>
+            <p className="mt-2 text-sm text-neutral-800">
+              <a href={`tel:0802 842 3189`} className="hover:text-royal">
+                0802 842 3189
+              </a>
+            </p>
           </div>
         </div>
       </section>
