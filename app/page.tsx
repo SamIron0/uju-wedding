@@ -347,7 +347,7 @@ export default function Home() {
             >
               <div className="relative aspect-square w-full overflow-hidden px-5 lg:px-0">
                 <Image
-                  src="/images/couple-14.jpg"
+                  src="/images/couple-38.jpg"
                   alt="Uju and Chinedu — our story begins"
                   fill
                   sizes="(max-width: 1023px) 72vw, 288px"
