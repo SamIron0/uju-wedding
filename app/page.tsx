@@ -483,9 +483,9 @@ export default function Home() {
           <div className="overflow-hidden rounded-2xl border border-wine/60 bg-white shadow-[0_24px_60px_rgba(0,0,0,0.08)]">
             <div className="aspect-[4/3] w-full">
 
-              <iframe title="Wedding Venues in Ikeja"
+              <iframe
                 className="h-full w-full border-0"
-                src="https://www.google.com/maps/d/u/0/viewer?mid=1am7T6h8_nHCV2Awm7B2mDdeb_AejTD4">
+                src="https://www.google.com/maps/d/embed?mid=1am7T6h8_nHCV2Awm7B2mDdeb_AejTD4&ehbc=2E312F">
               </iframe>
             </div>
           </div>
