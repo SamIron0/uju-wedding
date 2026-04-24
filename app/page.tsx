@@ -300,7 +300,7 @@ export default function Home() {
             >
               <div className="relative aspect-square w-full overflow-hidden px-5 lg:px-0">
                 <Image
-                  src="/images/couple-31.jpg"
+                  src="/images/couple-16.jpg"
                   alt="Uju and Chinedu — just us"
                   fill
                   sizes="(max-width: 1023px) 80vw, 320px"
@@ -347,7 +347,7 @@ export default function Home() {
             >
               <div className="relative aspect-square w-full overflow-hidden px-5 lg:px-0">
                 <Image
-                  src="/images/couple-1.jpg"
+                  src="/images/couple-14.jpg"
                   alt="Uju and Chinedu — our story begins"
                   fill
                   sizes="(max-width: 1023px) 72vw, 288px"
@@ -363,42 +363,47 @@ export default function Home() {
 
         <FilmStripCarousel
           images={[
-            { src: "/images/couple-17.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-32.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-4.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-28.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-11.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-39.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-7.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-24.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-35.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-14.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-30.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-5.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-21.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-37.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-9.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-26.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-18.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-33.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-12.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-6.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-23.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-38.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-15.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-27.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-10.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-34.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-19.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-20.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-31.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-44.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-8.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-22.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-36.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-13.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-25.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-35.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-19.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-41.jpg", alt: "Uju and Chinedu" },
             { src: "/images/couple-3.jpg", alt: "Uju and Chinedu" },
-            { src: "/images/couple-16.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-32.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-39.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-23.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-6.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-45.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-31.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-30.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-11.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-37.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-20.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-4.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-33.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-24.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-43.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-9.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-38.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-13.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-42.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-21.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-36.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-7.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-34.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-15.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-29.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-10.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-26.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-40.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-5.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-17.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-12.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-25.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-18.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-28.jpg", alt: "Uju and Chinedu" },
+            { src: "/images/couple-22.jpg", alt: "Uju and Chinedu" },
           ]}
         />
       </section>
@@ -661,9 +666,6 @@ export default function Home() {
           <div
             className="rounded-2xl border border-neutral-200 bg-white px-6 py-5 text-center shadow-[0_18px_40px_rgba(0,0,0,0.03)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,0,0,0.06)]"
           >
-            <p className="font-serif-display text-lg text-wine">
-              Olabisi
-            </p>
             <p className="mt-2 text-sm text-neutral-800">
               <a href={`tel:0802 842 3189`} className="hover:text-royal">
                 0802 842 3189
