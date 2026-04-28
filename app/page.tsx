@@ -581,6 +581,8 @@ export default function Home() {
                   <option value="obis-family">Obi&apos;s Family</option>
                   <option value="csu">CSU</option>
                   <option value="general">General</option>
+                  <option value="agmb">AGMB</option>
+                  <option value="mba">MBA</option>
                 </select>
               </div>
             </div>

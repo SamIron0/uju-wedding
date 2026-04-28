@@ -43,6 +43,8 @@ type AvailableInvite = {
 const CATEGORY_CONFIG: Record<string, InviteCategoryConfig> = {
   "abanas-family": { sheetName: "ab-invites", folderName: "ab-invites" },
   "obis-family": { sheetName: "ob-invites", folderName: "ob-invites" },
+  agmb: { sheetName: "ag-invites", folderName: "ag-invites" },
+  mba: { sheetName: "mb-invites", folderName: "mb-invites" },
   csu: { sheetName: "cs-invites", folderName: "cs-invites" },
   general: { sheetName: "gn-invites", folderName: "gn-invites" },
 };
